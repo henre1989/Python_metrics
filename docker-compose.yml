@@ -1,0 +1,15 @@
+---
+services:
+  build_app:
+    build: python3_image
+#    volumes:
+#      - war_file:/home/boxfuse-sample-java-war-hello/target
+  run_app:
+    image: prom/pushgateway
+    ports:
+      - "9091:9091"
+#    volumes:
+#      - war_file:/usr/local/tomcat/webapps
+version: "3.8"
+#volumes:
+#  war_file:
