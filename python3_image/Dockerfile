@@ -1,8 +1,9 @@
 FROM python:3
 WORKDIR /usr/src/app
-#COPY requirements.txt ./
-#RUN pip install --no-cache-dir -r requirements.txt
-RUN pip3 install prometheus_client
+RUN pip3 install prometheus_client && pip3 install paramiko
+USER root
+RUN mkdir /root/.ssh
+COPY id_rsa /root/.ssh
+RUN chmod 600 /root/.ssh/id_rsa
 COPY metrics.py ./
-#EXPOSE 8001
 CMD [ "python", "./metrics.py" ]
