@@ -12,4 +12,4 @@ services:
 #      - war_file:/usr/local/tomcat/webapps
 version: "3.8"
 #volumes:
-#  war_file:
+#  war_file:cd..

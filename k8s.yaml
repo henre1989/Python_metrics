@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: disk-metrics-deployment
+  labels:
+    app: disk-metrics-python
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: disk-metrics
+  template:
+    metadata:
+      labels:
+        project: disk-metrics
+    spec:
+      containers:
+        - name: disk-metrics1
+          image: henre1989/disk_metrics:latest
+
+        - name: pushgateway
+#        - name: run_app
+          image: prom/pushgateway
+          ports:
+            - containerPort: 9091
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: disk-metrics-service
+  labels:
+    owner: VitalyPetrov
+spec:
+  selector:
+    project: disk-metrics
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 9091
+      targetPort: 9091
+  type: LoadBalancer
