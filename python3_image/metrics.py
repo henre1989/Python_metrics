@@ -31,7 +31,7 @@ def push_metrics(host, fsys, full_size, used_space, mount):
    gaugeU = prom.Gauge('Used_space', 'Used space from disk in byte', registry=registry)
    gaugeT.set(full_size)
    gaugeU.set(used_space)
-   prom.push_to_gateway('run_app:9091', job=host+' Filesystem: ' + fsys + ' ,Mount '+ mount, registry=registry)
+   prom.push_to_gateway('pushgateway:9091', job=host+' Filesystem: ' + fsys + ' ,Mount '+ mount, registry=registry)
 
 
 if __name__ == '__main__':

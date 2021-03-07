@@ -4,7 +4,7 @@ services:
     build: python3_image
 #    volumes:
 #      - war_file:/home/boxfuse-sample-java-war-hello/target
-  run_app:
+  pushgateway:
     image: prom/pushgateway
     ports:
       - "9091:9091"
