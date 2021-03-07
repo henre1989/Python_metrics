@@ -35,7 +35,7 @@ def push_metrics(host, fsys, full_size, used_space, mount):
 
 
 if __name__ == '__main__':
-    host = '10.0.2.106'
+    host = '10.166.0.20'
     username = 'root'
     while True:
         connect_to_host(host, username)
