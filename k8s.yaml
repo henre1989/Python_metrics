@@ -5,7 +5,7 @@ metadata:
   labels:
     app: disk-metrics-python
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       project: disk-metrics
@@ -17,6 +17,10 @@ spec:
       containers:
         - name: disk-metrics1
           image: henre1989/disk_metrics:latest
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: test
+              subPath: nginx.conf
 
         - name: pushgateway
 #        - name: run_app

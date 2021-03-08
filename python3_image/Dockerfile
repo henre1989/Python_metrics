@@ -6,4 +6,6 @@ RUN mkdir /root/.ssh
 COPY ../id_rsa /root/.ssh
 RUN chmod 600 /root/.ssh/id_rsa
 COPY metrics.py ./
+RUN mkdir settings
+COPY settings/ ./settings
 CMD [ "python", "./metrics.py" ]
