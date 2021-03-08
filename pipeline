@@ -1,0 +1,35 @@
+pipeline {
+    environment {
+    registry = "henre1989/disk_metrics:latest"
+    registryCredential = 'docker-hub'
+    dockerImage = ''
+    }
+    agent any
+
+    stages {
+        stage('git clone Files') {
+            steps {
+                script {
+                    git 'https://github.com/henre1989/Python_metrics.git'
+                }
+            }
+        }
+        stage('Build images') {
+            steps {
+                script {
+                    dockerImage = docker.build registry
+                }
+            }
+         }
+         stage('images push') {
+            steps {
+                script {
+                    docker.withRegistry( '', registryCredential ) {
+                    dockerImage.push()
+                    }
+                }
+            }
+        }
+
+    }
+}
