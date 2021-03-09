@@ -20,6 +20,10 @@ pipeline {
                     dockerImage = docker.build registry
                 }
             }
+         stage('test app') {
+             steps {
+                 sh "echo something tests"
+             }
          }
          stage('images push') {
             steps {
